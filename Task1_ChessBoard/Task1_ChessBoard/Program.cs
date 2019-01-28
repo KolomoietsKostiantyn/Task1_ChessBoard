@@ -13,8 +13,13 @@ namespace Task1_ChessBoard
     {
         static void Main(string[] args)
         {
+            uint maxWidth = 50;
+            uint maxHeight = 50;
+
             IVisualizer visualizer = new ConsoleUI();
-            Controler controler = new Controler(visualizer, args);
+            IBoardCreator boardCreator = new BoardCreator(maxWidth, maxHeight);
+            IInnerDataValidator innerDataValidator = new InnerDataValidator();
+            Controler controler = new Controler(visualizer, boardCreator, innerDataValidator, args);
             controler.Start();
         }
     }

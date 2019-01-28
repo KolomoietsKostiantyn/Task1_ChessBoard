@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task1_ChessBoard.Intermediate
 {
-    interface IVisualizer
+    public interface IVisualizer
     {
         void ShowMessage(Massages ms);
         void ShowBoard(IBoard res);

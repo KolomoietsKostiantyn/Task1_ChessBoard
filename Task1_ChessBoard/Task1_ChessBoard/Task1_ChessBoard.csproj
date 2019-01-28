@@ -44,8 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\Board.cs" />
+    <Compile Include="BL\BoardCreator.cs" />
     <Compile Include="BL\Cell.cs" />
     <Compile Include="BL\Controler.cs" />
+    <Compile Include="BL\Interfases\IBoardCreator.cs" />
+    <Compile Include="BL\Interfases\IInnerDataValidator.cs" />
+    <Compile Include="BL\Interfases\InnerDataValidator.cs" />
+    <Compile Include="BL\Interfases\IChess.cs" />
+    <Compile Include="BL\Interfases\ICell.cs" />
     <Compile Include="Intermediate\IBoard.cs" />
     <Compile Include="Intermediate\Massages.cs" />
     <Compile Include="Intermediate\IVisualizer.cs" />

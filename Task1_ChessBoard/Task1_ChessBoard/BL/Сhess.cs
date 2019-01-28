@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task1_ChessBoard
+namespace Task1_ChessBoard.BL
 {
-    class Сhess
+    class Сhess: IChess
     {
     }
 }

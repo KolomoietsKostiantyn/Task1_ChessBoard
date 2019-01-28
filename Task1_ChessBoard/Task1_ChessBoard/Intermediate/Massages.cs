@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task1_ChessBoard.Intermediate
 {
-    enum Massages
+    public enum Massages
     {
         Instruction,
         Eror

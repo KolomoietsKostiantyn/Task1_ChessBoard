@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1_ChessBoard", "Task1_ChessBoard\Task1_ChessBoard.csproj", "{FB90AE75-315C-46CA-B51E-D40A7A68231A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1_ChessBoard.Test", "Task1_ChessBoard.Test\Task1_ChessBoard.Test.csproj", "{0D8D63EB-794D-44F7-ADDB-377778B98327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FB90AE75-315C-46CA-B51E-D40A7A68231A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB90AE75-315C-46CA-B51E-D40A7A68231A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB90AE75-315C-46CA-B51E-D40A7A68231A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D8D63EB-794D-44F7-ADDB-377778B98327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8D63EB-794D-44F7-ADDB-377778B98327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8D63EB-794D-44F7-ADDB-377778B98327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8D63EB-794D-44F7-ADDB-377778B98327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

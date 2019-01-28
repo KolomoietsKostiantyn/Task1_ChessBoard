@@ -7,63 +7,42 @@ using Task1_ChessBoard.Intermediate;
 
 namespace Task1_ChessBoard.BL
 {
-    class Controler
+    public class Controler
     {
-        private readonly int _maxWidth = 80;
-        private readonly int _maxHeight = 24;
-        IVisualizer _visualizer;
-        string[] _arr;
-        IBoard _gamefild;
+        private IVisualizer _visualizer;
+        private IBoard _gamefild;
+        private string[] _arr;
+        private IBoardCreator _creator;
+        IInnerDataValidator _innerDataValidator;
 
-        public Controler(IVisualizer visualizer, string [] arr)
+        public Controler(IVisualizer visualizer, IBoardCreator creator, IInnerDataValidator innerDataValidator, string [] arr)
         {
+            _innerDataValidator = innerDataValidator;
+            _creator = creator;
             _visualizer = visualizer;
             _arr = arr;
         }
 
-        private bool ValidateInner(string[] arr,out int num1, out int num2)
-        {
-            num1 = 0;
-            num2 = 0;
-            if (arr == null || arr.Length != 2)
-            {
-                _visualizer.ShowMessage(Massages.Instruction);
-                return false;
-            }
-
-            bool result = true;
-
-            if (int.TryParse(arr[0],out num1))
-            {
-                if (num1 > _maxWidth || num1 < 1)
-                {
-                    result = false;
-                }
-            }
-            if (result && !int.TryParse(arr[1], out num2))
-            {
-                if (num2 > _maxHeight || num1 < 1)
-                {
-                    result = false;
-                }
-            }
-            if (!result)
-            {
-                _visualizer.ShowMessage(Massages.Eror);
-            }
-            return result;
-        }
-
         public void Start()
         {
-            int width;
-            int height;
-            if (ValidateInner(_arr, out width, out height))
+            uint width;
+            uint height;
+            if (_innerDataValidator.ParsToParams(_arr, out width, out height))
             {
-                _gamefild = new Board(width, height);
-                _visualizer.ShowBoard(_gamefild);
+                _gamefild = _creator.Create(width, height);
+                if (_gamefild == null)
+                {
+                    _visualizer.ShowMessage(Massages.Eror);
+                }
+                else
+                {
+                    _visualizer.ShowBoard(_gamefild);
+                }
             }
-
+            else
+            {
+                _visualizer.ShowMessage(Massages.Instruction);
+            }
         }
 
 

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Task1_ChessBoard.Intermediate
 {
-    interface IBoard
+    public interface IBoard
     {
-        int Width { get; }
-        int Height { get; }
+        uint Width {get; }
+        uint Height {get; }
         IEnumerator<bool> GetEnumerator();
     }
 }
