@@ -44,9 +44,5 @@ namespace Task1_ChessBoard.BL
                 _visualizer.ShowMessage(Massages.Instruction);
             }
         }
-
-
-
-
     }
 }

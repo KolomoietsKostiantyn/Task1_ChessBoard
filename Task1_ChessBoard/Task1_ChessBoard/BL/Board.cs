@@ -21,7 +21,7 @@ namespace Task1_ChessBoard.BL
 
         public IEnumerator<bool> GetEnumerator()
         {
-            foreach (Cell item in _board)
+            foreach (ICell item in _board)
             {
                 yield return item.IsWhite;
             }

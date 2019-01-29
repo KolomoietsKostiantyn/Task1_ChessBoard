@@ -20,7 +20,7 @@ namespace Task1_ChessBoard.BL
 
         public IBoard Create(uint width, uint height)
         {
-            if (width > _maxWidth || height > _maxHeight)
+            if (width > _maxWidth || height > _maxHeight || width == 0 || height == 0)
             {
                 return null;
             }
@@ -33,7 +33,7 @@ namespace Task1_ChessBoard.BL
 
         public ICell[,] FulfillBoard(uint width, uint height)
         {
-            if (width > _maxWidth || height > _maxHeight)
+            if (width > _maxWidth || height > _maxHeight || width == 0 || height == 0)
             {
                 return null;
             }

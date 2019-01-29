@@ -49,7 +49,7 @@
     <Compile Include="BL\Controler.cs" />
     <Compile Include="BL\Interfases\IBoardCreator.cs" />
     <Compile Include="BL\Interfases\IInnerDataValidator.cs" />
-    <Compile Include="BL\Interfases\InnerDataValidator.cs" />
+    <Compile Include="BL\InnerDataValidator.cs" />
     <Compile Include="BL\Interfases\IChess.cs" />
     <Compile Include="BL\Interfases\ICell.cs" />
     <Compile Include="Intermediate\IBoard.cs" />
@@ -57,7 +57,6 @@
     <Compile Include="Intermediate\IVisualizer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BL\Сhess.cs" />
     <Compile Include="UI\ConsoleUI.cs" />
   </ItemGroup>
   <ItemGroup>

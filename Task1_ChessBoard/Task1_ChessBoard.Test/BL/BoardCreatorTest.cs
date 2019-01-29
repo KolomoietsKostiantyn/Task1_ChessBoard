@@ -12,22 +12,30 @@ namespace Task1_ChessBoard.Test.BL
 
         BoardCreator _boardCreator;
 
-        [TestInitialize]
-        public void Initialize()
+        [TestMethod]
+        public void Create_TooBigLenth_Null()
         {
+
             uint maxWidth = 50;
             uint maxHeight = 50;
+            uint width = 50;
+            uint height = 51;
+
             _boardCreator = new BoardCreator(maxWidth, maxHeight);
+
+            IBoard result = _boardCreator.Create(width, height);
+
+            Assert.IsNull(result);
         }
 
         [TestMethod]
-        public void Create_IncorectLenth_Null()
+        public void Create_ZeroBigLenth_Null()
         {
 
             uint maxWidth = 50;
             uint maxHeight = 50;
-            uint width = ++maxWidth;
-            uint height = ++maxHeight;
+            uint width = 0;
+            uint height = 20;
 
             _boardCreator = new BoardCreator(maxWidth, maxHeight);
 
@@ -42,7 +50,7 @@ namespace Task1_ChessBoard.Test.BL
 
             uint width = 4;
             uint height = 4;
-            bool[] required = new bool[]
+            bool[] expected = new bool[]
             {
                 true, false, true, false,
                 false, true, false, true,
@@ -53,13 +61,14 @@ namespace Task1_ChessBoard.Test.BL
             _boardCreator = new BoardCreator(width, height);
             IBoard result = _boardCreator.Create(width, height);
 
-
             int num = 0;
             foreach (bool item in result)
             {
-                Assert.AreEqual(item, required[num]);
+                Assert.AreEqual(item, expected[num]);
                 num++;
             }
+
+
             Assert.AreEqual(width, result.Width);
             Assert.AreEqual(height, result.Height);
         }
@@ -86,7 +95,7 @@ namespace Task1_ChessBoard.Test.BL
 
             uint width = 3;
             uint height = 3;
-            ICell[,] required = new ICell[,]
+            ICell[,] expected = new ICell[,]
             {
                 {new Cell(true, 0, 0), new Cell(false, 0, 1), new Cell(true, 0, 2)},
                 {new Cell(false, 1, 0), new Cell(true, 1, 1), new Cell(false, 1, 2)},
@@ -96,10 +105,37 @@ namespace Task1_ChessBoard.Test.BL
             _boardCreator = new BoardCreator(width, height);
             ICell[,] result = _boardCreator.FulfillBoard(width, height);
 
-            CollectionAssert.AreEqual(result, required, new CellComparer());
-
-
+            CollectionAssert.AreEqual(result, expected, new CellComparer());
         }
 
+        [TestMethod]
+        public void FulfillBoard_TooBigSide_Null()
+        {
+
+            uint width = 11;
+            uint height = 8;
+            uint maxWidth = 10;
+            uint maxHeight = 10;
+
+            _boardCreator = new BoardCreator(maxWidth, maxHeight);
+            ICell[,] result = _boardCreator.FulfillBoard(width, height);
+
+            Assert.IsNull(result);
+        }
+
+        [TestMethod]
+        public void FulfillBoard_ZeroSide_Null()
+        {
+
+            uint width = 0;
+            uint height = 8;
+            uint maxWidth = 10;
+            uint maxHeight = 10;
+
+            _boardCreator = new BoardCreator(maxWidth, maxHeight);
+            ICell[,] result = _boardCreator.FulfillBoard(width, height);
+
+            Assert.IsNull(result);
+        }
     }
 }
