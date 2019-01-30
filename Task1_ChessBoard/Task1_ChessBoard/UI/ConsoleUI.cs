@@ -13,22 +13,22 @@ namespace Task1_ChessBoard.UI
 
         public void ShowBoard(IBoard res)
         {
-            int curentwidth = 0;
-            foreach (bool item in res)
+            for (uint i = 0; i < res.Height; i++)
             {
-                Console.ForegroundColor = ConsoleColor.White;
-                if (!item)
+                for (uint j = 0; j < res.Width; j++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Black;
+                    if (res[i, j] == FigureColor.White)
+                    {
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
                 }
-                Console.Write("*");
-                curentwidth++;
-                if (curentwidth == (res.Width))
-                {
-                    Console.WriteLine();
-                    curentwidth = 0;
-                }
+                Console.WriteLine();
             }
+
             Console.ReadKey();
         }
 

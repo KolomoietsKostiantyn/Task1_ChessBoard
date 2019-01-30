@@ -10,6 +10,7 @@ namespace Task1_ChessBoard.Intermediate
     {
         uint Width {get; }
         uint Height {get; }
-        IEnumerator<bool> GetEnumerator();
+        bool BoardIsFill { get; }
+        FigureColor this[uint x, uint y]{ get; }
     }
 }

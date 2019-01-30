@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task1_ChessBoard.Intermediate;
 
 namespace Task1_ChessBoard.BL
 {
@@ -11,13 +12,13 @@ namespace Task1_ChessBoard.BL
         public int X { get; private set; }
         public int Y { get; private set; }
         public IChess Chess { get; set; }
-        public bool IsWhite { get; private set; }
+        public FigureColor Color { get; private set;}
 
-        public Cell(bool isWhite, int x, int y)
+        public Cell(FigureColor color, int x, int y)
         {
             X = x;
             Y = y;
-            IsWhite = isWhite;
+            Color = color;
         }
 
     }

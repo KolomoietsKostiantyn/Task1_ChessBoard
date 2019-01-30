@@ -10,8 +10,6 @@ namespace Task1_ChessBoard.Test.BL
     public class BoardCreatorTest
     {
 
-        BoardCreator _boardCreator;
-
         [TestMethod]
         public void Create_TooBigLenth_Null()
         {
@@ -21,7 +19,7 @@ namespace Task1_ChessBoard.Test.BL
             uint width = 50;
             uint height = 51;
 
-            _boardCreator = new BoardCreator(maxWidth, maxHeight);
+            BoardCreator _boardCreator = new BoardCreator(maxWidth, maxHeight);
 
             IBoard result = _boardCreator.Create(width, height);
 
@@ -37,7 +35,7 @@ namespace Task1_ChessBoard.Test.BL
             uint width = 0;
             uint height = 20;
 
-            _boardCreator = new BoardCreator(maxWidth, maxHeight);
+            BoardCreator _boardCreator = new BoardCreator(maxWidth, maxHeight);
 
             IBoard result = _boardCreator.Create(width, height);
 
@@ -50,92 +48,27 @@ namespace Task1_ChessBoard.Test.BL
 
             uint width = 4;
             uint height = 4;
-            bool[] expected = new bool[]
+            FigureColor[,] expected = new FigureColor[,]
             {
-                true, false, true, false,
-                false, true, false, true,
-                true, false, true, false,
-                false, true, false, true,
+                { FigureColor.White, FigureColor.Black, FigureColor.White, FigureColor.Black },
+                { FigureColor.Black, FigureColor.White, FigureColor.Black, FigureColor.White },
+                { FigureColor.White, FigureColor.Black, FigureColor.White, FigureColor.Black },
+                { FigureColor.Black, FigureColor.White, FigureColor.Black, FigureColor.White },
             };
-                 
-            _boardCreator = new BoardCreator(width, height);
+
+            BoardCreator _boardCreator = new BoardCreator(width, height);
             IBoard result = _boardCreator.Create(width, height);
 
-            int num = 0;
-            foreach (bool item in result)
+            for (uint i = 0; i < result.Height; i++)
             {
-                Assert.AreEqual(item, expected[num]);
-                num++;
+                for (uint j = 0; j < result.Width; j++)
+                {
+                    Assert.AreEqual(result[i,j], expected[i, j]);
+                }
             }
-
-
+            Assert.IsTrue(result.BoardIsFill);
             Assert.AreEqual(width, result.Width);
             Assert.AreEqual(height, result.Height);
-        }
-
-        [TestMethod]
-        public void FulfillBoard_IncorectLenth_Null()
-        {
-
-            uint maxWidth = 50;
-            uint maxHeight = 50;
-            uint width = ++maxWidth;
-            uint height = ++maxHeight;
-
-            _boardCreator = new BoardCreator(maxWidth, maxHeight);
-
-            IBoard result = _boardCreator.Create(width, height);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void FulfillBoard_ValidData_OK()
-        {
-
-            uint width = 3;
-            uint height = 3;
-            ICell[,] expected = new ICell[,]
-            {
-                {new Cell(true, 0, 0), new Cell(false, 0, 1), new Cell(true, 0, 2)},
-                {new Cell(false, 1, 0), new Cell(true, 1, 1), new Cell(false, 1, 2)},
-                {new Cell(true, 2, 0), new Cell(false, 2, 1), new Cell(true, 2, 2)}
-            };
-
-            _boardCreator = new BoardCreator(width, height);
-            ICell[,] result = _boardCreator.FulfillBoard(width, height);
-
-            CollectionAssert.AreEqual(result, expected, new CellComparer());
-        }
-
-        [TestMethod]
-        public void FulfillBoard_TooBigSide_Null()
-        {
-
-            uint width = 11;
-            uint height = 8;
-            uint maxWidth = 10;
-            uint maxHeight = 10;
-
-            _boardCreator = new BoardCreator(maxWidth, maxHeight);
-            ICell[,] result = _boardCreator.FulfillBoard(width, height);
-
-            Assert.IsNull(result);
-        }
-
-        [TestMethod]
-        public void FulfillBoard_ZeroSide_Null()
-        {
-
-            uint width = 0;
-            uint height = 8;
-            uint maxWidth = 10;
-            uint maxHeight = 10;
-
-            _boardCreator = new BoardCreator(maxWidth, maxHeight);
-            ICell[,] result = _boardCreator.FulfillBoard(width, height);
-
-            Assert.IsNull(result);
-        }
+        }       
     }
 }

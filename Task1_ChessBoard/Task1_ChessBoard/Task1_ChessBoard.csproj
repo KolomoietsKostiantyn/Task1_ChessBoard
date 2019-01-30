@@ -52,6 +52,7 @@
     <Compile Include="BL\InnerDataValidator.cs" />
     <Compile Include="BL\Interfases\IChess.cs" />
     <Compile Include="BL\Interfases\ICell.cs" />
+    <Compile Include="Intermediate\FigureColor.cs" />
     <Compile Include="Intermediate\IBoard.cs" />
     <Compile Include="Intermediate\Massages.cs" />
     <Compile Include="Intermediate\IVisualizer.cs" />

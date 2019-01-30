@@ -18,7 +18,7 @@ namespace Task1_ChessBoard.Test.Supporting
             {
                 throw new ArgumentException();
             }
-            if (tr1.IsWhite == tr2.IsWhite && tr1.X == tr2.X &&
+            if (tr1.Color == tr2.Color && tr1.X == tr2.X &&
                     tr1.Y == tr2.Y)
             {
                 return 0;

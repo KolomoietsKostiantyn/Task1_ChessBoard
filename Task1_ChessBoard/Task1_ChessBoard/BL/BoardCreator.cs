@@ -25,46 +25,35 @@ namespace Task1_ChessBoard.BL
                 return null;
             }
 
-            Board board = new Board(width, height);
-            board._board = FulfillBoard(width, height);
+            ICell[,] field = FulfillBoard(width, height);
+            Board board = new Board(field);
 
             return board;
         }
 
-        public ICell[,] FulfillBoard(uint width, uint height)
+        private ICell[,] FulfillBoard(uint width, uint height)
         {
-            if (width > _maxWidth || height > _maxHeight || width == 0 || height == 0)
-            {
-                return null;
-            }
-
             ICell[,] result = new Cell[height, width];
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
+                    FigureColor figureColor = FigureColor.White;
                     if (i % 2 == 0)
                     {
-                        if (j % 2 == 0)
+                        if (j % 2 != 0)
                         {
-                            result[i, j] = new Cell(true,i,j);
-                        }
-                        else
-                        {
-                            result[i, j] = new Cell(false, i, j);
+                            figureColor = FigureColor.Black;
                         }
                     }
                     else
                     {
                         if (j % 2 == 0)
                         {
-                            result[i, j] = new Cell(false, i, j);
-                        }
-                        else
-                        {
-                            result[i, j] = new Cell(true, i, j);
+                            figureColor = FigureColor.Black;
                         }
                     }
+                    result[i, j] = new Cell(figureColor, i, j);
                 }
             }
 

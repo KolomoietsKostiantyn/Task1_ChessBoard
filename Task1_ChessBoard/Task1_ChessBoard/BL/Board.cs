@@ -9,21 +9,49 @@ namespace Task1_ChessBoard.BL
 {
     public class Board : IBoard
     {
-        public ICell[,] _board;
-        public uint Width { get; private set; }
-        public uint Height { get; private set; }
-
-        public Board(uint width, uint height)
+        private ICell[,] _board;
+        public uint Width
         {
-            Width = width;
-            Height = height;
-        }   
-
-        public IEnumerator<bool> GetEnumerator()
+            get;
+            private set;
+        }
+        public uint Height
         {
-            foreach (ICell item in _board)
+            get;
+            private set;
+        }
+
+        public bool BoardIsFill
+        {
+            get
             {
-                yield return item.IsWhite;
+                bool result = false;
+                if (_board != null)
+                {
+                    result = true;
+                }
+
+                return result;
+            }
+        }
+
+        public Board( ICell[,] board)
+        {
+            _board = board;
+            Height = (uint)board.GetLength(0);
+            Width = (uint)board.GetLength(1);
+        }
+
+        public FigureColor this[uint x, uint y]
+        {
+            get
+            {
+                if (x >= Height || y >= Width)
+                {
+                    return FigureColor.Incorrect;
+                }
+
+                return _board[x, y].Color;
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Task1_ChessBoard.BL;
+using Task1_ChessBoard.Intermediate;
 using Task1_ChessBoard.Test.Supporting;
 
 namespace Task1_ChessBoard.Test.BL
@@ -9,29 +10,62 @@ namespace Task1_ChessBoard.Test.BL
     public class BoardTest
     {
         [TestMethod]
-        public void GetEnumerator_ValidData_OK()
+        public void Indexer_ValidData_OK()
         {
             uint width = 3;
             uint height = 3;
-            ICell[,] expected = new ICell[,]
+            FigureColor[,] expected = new FigureColor[,]
             {
-                {new Cell(true, 0, 0), new Cell(false, 0, 1), new Cell(true, 0, 2)},
-                {new Cell(false, 1, 0), new Cell(true, 1, 1), new Cell(false, 1, 2)},
-                {new Cell(true, 2, 0), new Cell(false, 2, 1), new Cell(true, 2, 2)}
+                { FigureColor.White, FigureColor.Black, FigureColor.White },
+                { FigureColor.Black, FigureColor.White, FigureColor.Black },
+                { FigureColor.White, FigureColor.Black, FigureColor.White },
             };
 
-
-            Board board = new Board(width, height);
-            board._board = new ICell[,]
+            ICell[,] inner = new ICell[,]
             {
-                {new Cell(true, 0, 0), new Cell(false, 0, 1), new Cell(true, 0, 2)},
-                {new Cell(false, 1, 0), new Cell(true, 1, 1), new Cell(false, 1, 2)},
-                {new Cell(true, 2, 0), new Cell(false, 2, 1), new Cell(true, 2, 2)}
+                {new Cell(FigureColor.White, 0, 0), new Cell(FigureColor.Black, 0, 1), new Cell(FigureColor.White, 0, 2)},
+                {new Cell(FigureColor.Black, 1, 0), new Cell(FigureColor.White, 1, 1), new Cell(FigureColor.Black, 1, 2)},
+                {new Cell(FigureColor.White, 2, 0), new Cell(FigureColor.Black, 2, 1), new Cell(FigureColor.White, 2, 2)}
             };
 
-            CellComparer cellComparer = new CellComparer();
+            Board board = new Board( inner);
 
-            CollectionAssert.AreEqual(expected, board._board, cellComparer);
+            for (uint i = 0; i < board.Height; i++)
+            {
+                for (uint j = 0; j < board.Width; j++)
+                {    
+                    Assert.AreEqual(board[i, j], expected[i, j]);
+                }
+            }
+            Assert.AreEqual(width, board.Width);
+            Assert.AreEqual(height, board.Height);
         }
+
+        [TestMethod]
+        [DataRow(2u,55u)]
+        [DataRow(55u, 2u)]
+        public void Indexer_ToBigValue_FigureColorIncorrect(uint width, uint height)
+        {
+            FigureColor expected = FigureColor.Incorrect;
+
+            ICell[,] inner = new ICell[,]
+            {
+                {new Cell(FigureColor.White, 0, 0), new Cell(FigureColor.Black, 0, 1), new Cell(FigureColor.White, 0, 2)},
+                {new Cell(FigureColor.Black, 1, 0), new Cell(FigureColor.White, 1, 1), new Cell(FigureColor.Black, 1, 2)},
+                {new Cell(FigureColor.White, 2, 0), new Cell(FigureColor.Black, 2, 1), new Cell(FigureColor.White, 2, 2)}
+            };
+
+            Board board = new Board(inner);
+            FigureColor expected1 = board[width, height];
+
+
+            Assert.AreEqual(board[width, height], expected);
+
+        }
+
+
+
+
+
     }
 }

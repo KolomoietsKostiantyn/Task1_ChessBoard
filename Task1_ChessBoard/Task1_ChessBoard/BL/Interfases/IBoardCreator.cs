@@ -10,6 +10,5 @@ namespace Task1_ChessBoard.BL
     public interface IBoardCreator
     {
         IBoard Create(uint width, uint height);
-        ICell[,] FulfillBoard(uint width, uint height);
     }
 }
