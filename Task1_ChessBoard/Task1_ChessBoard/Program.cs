@@ -16,7 +16,7 @@ namespace Task1_ChessBoard
             uint maxWidth = 50;
             uint maxHeight = 50;
 
-            IVisualizer visualizer = new ConsoleUI();
+            IVisualizer visualizer = new ConsoleUI(maxWidth, maxHeight);
             IBoardCreator boardCreator = new BoardCreator(maxWidth, maxHeight);
             IInnerDataValidator innerDataValidator = new InnerDataValidator();
             Controler controler = new Controler(visualizer, boardCreator, innerDataValidator, args);

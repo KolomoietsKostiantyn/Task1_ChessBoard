@@ -9,7 +9,16 @@ namespace Task1_ChessBoard.UI
 {
     public class ConsoleUI : IVisualizer
     {
-        private readonly string _instruction = "Enter sides of chess boadr (width in diapazon 1-80, height in diapazon 1-24), calling a program with parameters.";
+        private readonly string _instruction = "Enter sides of chess boadr (width in diapazon 1-{0}, height in diapazon 1-{1}), calling a program with parameters.";
+        private uint _maxX;
+        private uint _maxY;
+
+
+        public ConsoleUI(uint maxX, uint maxY)
+        {
+            _maxX = maxX;
+            _maxY = maxY;
+        }
 
         public void ShowBoard(IBoard res)
         {
@@ -37,7 +46,7 @@ namespace Task1_ChessBoard.UI
             switch (ms)
             {
                 case Massages.Instruction:
-                    Console.WriteLine(_instruction);
+                    Console.WriteLine(string.Format(_instruction, _maxX, _maxY));
                     Console.ReadKey();
                     break;
                 case Massages.Eror:
